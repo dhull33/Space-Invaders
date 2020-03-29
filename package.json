@@ -1,0 +1,103 @@
+{
+  "name": "space-invaders",
+  "description": "We are here to stay.",
+  "version": "0.0.01",
+  "author": "David Hull",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": "URL TO ISSUE TRACKER"
+  },
+  "scripts": {
+    "start": "pm2-runtime start ecosystem.config.js --env development",
+    "start:dev": "nodemon bin/www",
+    "start:prettier:dev": "npm-run-all --parallel start:dev prettier-watch",
+    "prettier-watch": "onchange '**/*.js' -- prettier --write {{changed}}",
+    "build": "webpack --config webpack.config.js"
+  },
+  "engines": {
+    "node": "12.16.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "http-errors": "^1.7.3",
+    "morgan": "^1.10.0",
+    "pm2": "^4.2.3",
+    "regenerator-runtime": "^0.13.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.9.0",
+    "ajv": "^6.12.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-airbnb": "^4.4.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "file-loader": "^6.0.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.9",
+    "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^6.1.0",
+    "prettier": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "style-loader": "^1.1.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^4.0.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-manifest-plugin": "^2.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "airbnb",
+        {
+          "targets": {
+            "node": "12.16.1"
+          }
+        },
+        "@babel/preset-env"
+      ]
+    ],
+    "plugins": [
+      "babel-plugin-transform-class-properties"
+    ]
+  }
+}
